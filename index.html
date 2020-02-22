@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1">
+        <title>#creativedoce</title>
+        <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles/styles.css">
+        <script src="js/blotter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/liquidDistortMaterial.min.js"></script>
+    </head>
+    
+	<body>
+
+        <div class="container">
+            <div class="item-1"> 
+                <div id="blotter-c"></div>
+            <script>
+                const textC = new Blotter.Text('exhale', {
+                    paddingRight: 50,
+                    paddingLeft: 50,
+                    family: 'UnifrakturCook',
+                    size: 75,
+                    fill: '#fff'
+                  });
+                  
+                  const materialC = new Blotter.LiquidDistortMaterial();
+                  materialC.uniforms.uSpeed.value = 0.5;
+                  materialC.uniforms.uVolatility.value = 0.05;
+                  materialC.uniforms.uSeed.value = 3;
+                  
+                  const blotterC = new Blotter(materialC, {
+                    texts: textC
+                  });
+                  
+                  const scopeC = blotterC.forText(textC);
+                  scopeC.appendTo(document.getElementById('blotter-c'));
+            </script>
+                
+            </div>     
+        </div> 
+
+    <canvasWrapper>
+    	<script src="js/three.js"></script>
+		    <script>
+						var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera( 60, window.innerWidth/window.innerHeight, 0.3, 900 );
+            
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			var geometry = new THREE.BoxGeometry();
+			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 1.25;
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.0012;
+                cube.rotation.y += 0.0012;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+         </script>
+    </canvasWrapper>
+
+    </body>
+    
+</html>
