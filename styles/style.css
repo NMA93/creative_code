@@ -85,12 +85,12 @@ canvas {
   grid-column: 1 / 5;
 }
 
-.blotter-a{
+.textA{
   padding-top: 5%;
 }
-.blotter-a{
+.textB{
   padding-top: 10%;
 }
-.blotter-a{
+.textC{
   padding-top: 15%;
 }
