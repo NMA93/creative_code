@@ -1,121 +1,67 @@
 <!DOCTYPE html>
-<html>
-	<head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1">
-        <title>#creativedoce</title>
-        <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles/styles.css">
-        <script src="js/blotter.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/liquidDistortMaterial.min.js"></script>
-    </head>
-    
-	<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ERROR</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script src="js/ObjectLoader.js"></script>
+    <script src="js/three.js"></script>
+    <script src="js/blotter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/liquidDistortMaterial.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
 
-        <script src="js/three.js"></script>
-        <script src="js/OrbitControls.js"></script>
-        <script src="js/ObjectLoader.js"></script>
+      <div class="item1">
+        <div id="blotter-a"></div>
+      </div>
 
-        <div class="container">
-            <div class="item-1"> 
-                <div id="blotter-c"></div>
-            <script>
-                const textC = new Blotter.Text('Lorem Ipsum', {
-                    paddingRight: 50,
-                    paddingLeft: 50,
-                    family: 'UnifrakturCook',
-                    size: 75,
-                    fill: '#fff'
-                  });
-                  
-                  const materialC = new Blotter.LiquidDistortMaterial();
-                  materialC.uniforms.uSpeed.value = 0.5;
-                  materialC.uniforms.uVolatility.value = 0.05;
-                  materialC.uniforms.uSeed.value = 3;
-                  
-                  const blotterC = new Blotter(materialC, {
-                    texts: textC
-                  });
-                  
-                  const scopeC = blotterC.forText(textC);
-                  scopeC.appendTo(document.getElementById('blotter-c'));
-            </script>
-                
-            </div>     
-        </div> 
+      <div class="item2">
+        <div id="blotter-b"></div>
+      </div>
 
+      <div class="item3">
+        <div id="blotter-c"></div>
+      </div>
+        
         <script>
-            var scene = new THREE.Scene( );
-            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-            
-    
-            var renderer = new THREE.WebGLRenderer( );
-            renderer.setSize( window.innerWidth, window.innerHeight );
-            document.body.appendChild( renderer.domElement );
-    
-            // check when the browser size has changed and adjust the camera accordingly
-            window.addEventListener( 'resize', function( )
-            {
-                var WIDTH = window.innerWidth;
-                var HEIGHT = window.innerHeight;
-                renderer.setSize( WIDTH, HEIGHT );
-                camera.aspect = WIDTH / HEIGHT;
-                camera.updateProjectionMatrix( );
-            } );
-    
-            controls = new THREE.OrbitControls( camera, renderer.domElement );
-    
-            camera.position.z = 7;
-    
-            // instantiate a loader
-            var loader = new THREE.ObjectLoader( );
-    
-            // load a resource
-            loader.load
-            (
-                // resource URL
-                'models/skull.json',
-                // Function when resource is loaded
-                function ( object )
-                {
-                    scene.add( object );
-                }
-            );
-    
-            var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.1 );
-            scene.add( ambientLight );
-    
-    
-            // game logic
-            var update = function( )
-            {
-    
-            };
-    
-            // draw scene
-            var render = function( )
-            {
-                renderer.render( scene, camera );
-            };
-    
-            // run game loop (update, render, repeat)
-            var GameLoop = function( )
-            {
-                requestAnimationFrame( GameLoop );
-    
-                update( );
-                render( );
-            };
-    
-            GameLoop( );
 
-            var clip = THREE.AnimationClip.findByName( clips, 'dance' );
-var action = mixer.clipAction( clip );
-action.play();
+          var styleProperties = {
+            paddingRight: 50,
+            paddingLeft: 50,
+            family: "UnifrakturCook",
+            size: 75,
+            fill: "#fff"
+          }
+
+          const textA = new Blotter.Text("There was a table set out under a tree in front", styleProperties);
+          const textB = new Blotter.Text("There was a table set out under a tree in front", styleProperties);
+          const textC = new Blotter.Text("There was a table set out under a tree in front", styleProperties);
+          
+
+          const material = new Blotter.LiquidDistortMaterial();
+          material.uniforms.uSpeed.value = 0.25;
+          material.uniforms.uVolatility.value = 0.5;
+          material.uniforms.uSeed.value = 0.2;
+
+          const blotter = new Blotter(material, {
+            texts: textA, textB, textC
+          });
+
+          const scopeA = blotter.forText(textA);
+          const scopeB = blotter.forText(textB);
+          const scopeC = blotter.forText(textC);
+
+
+          scopeA.appendTo(document.getElementById("blotter-a"));
+          scopeB.appendTo(document.getElementById("blotter-b"));
+          scopeC.appendTo(document.getElementById("blotter-c"));
         </script>
     
-    
+    </div>
 
-    </body>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
