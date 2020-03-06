@@ -13,15 +13,15 @@
     <div class="container">
 
       <div class="item1">
-        <div id="blotter-a"></div>
+        <div id="textA"></div>
       </div>
 
       <div class="item2">
-        <div id="blotter-b"></div>
+        <div id="textB"></div>
       </div>
 
       <div class="item3">
-        <div id="blotter-c"></div>
+        <div id="textC"></div>
       </div>
         
         <script>
@@ -35,14 +35,14 @@
           }
 
           const textA = new Blotter.Text("There was a table set out under a tree in front", styleProperties);
-          const textB = new Blotter.Text("There was a table set out under a tree in front", styleProperties);
-          const textC = new Blotter.Text("There was a table set out under a tree in front", styleProperties);
+          const textB = new Blotter.Text("12345678", styleProperties);
+          const textC = new Blotter.Text("T9101112131415", styleProperties);
           
 
           const material = new Blotter.LiquidDistortMaterial();
-          material.uniforms.uSpeed.value = 0.25;
-          material.uniforms.uVolatility.value = 0.5;
-          material.uniforms.uSeed.value = 0.2;
+          material.uniforms.uSpeed.value = 0.15;
+          material.uniforms.uVolatility.value = 0.25;
+          material.uniforms.uSeed.value = 0.10;
 
           const blotter = new Blotter(material, {
             texts: textA, textB, textC
@@ -53,9 +53,9 @@
           const scopeC = blotter.forText(textC);
 
 
-          scopeA.appendTo(document.getElementById("blotter-a"));
-          scopeB.appendTo(document.getElementById("blotter-b"));
-          scopeC.appendTo(document.getElementById("blotter-c"));
+          scopeA.appendTo(document.getElementById("textA"));
+          scopeB.appendTo(document.getElementById("textB"));
+          scopeC.appendTo(document.getElementById("textC"));
         </script>
     
     </div>
