@@ -12,11 +12,15 @@
     
 	<body>
 
+        <script src="js/three.js"></script>
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/ObjectLoader.js"></script>
+
         <div class="container">
             <div class="item-1"> 
                 <div id="blotter-c"></div>
             <script>
-                const textC = new Blotter.Text('exhale', {
+                const textC = new Blotter.Text('Lorem Ipsum', {
                     paddingRight: 50,
                     paddingLeft: 50,
                     family: 'UnifrakturCook',
@@ -40,36 +44,77 @@
             </div>     
         </div> 
 
-    <canvasWrapper>
-    	<script src="js/three.js"></script>
-		    <script>
-						var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera( 60, window.innerWidth/window.innerHeight, 0.3, 900 );
+        <script>
+            var scene = new THREE.Scene( );
+            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
             
+    
+            var renderer = new THREE.WebGLRenderer( );
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
+    
+            // check when the browser size has changed and adjust the camera accordingly
+            window.addEventListener( 'resize', function( )
+            {
+                var WIDTH = window.innerWidth;
+                var HEIGHT = window.innerHeight;
+                renderer.setSize( WIDTH, HEIGHT );
+                camera.aspect = WIDTH / HEIGHT;
+                camera.updateProjectionMatrix( );
+            } );
+    
+            controls = new THREE.OrbitControls( camera, renderer.domElement );
+    
+            camera.position.z = 7;
+    
+            // instantiate a loader
+            var loader = new THREE.ObjectLoader( );
+    
+            // load a resource
+            loader.load
+            (
+                // resource URL
+                'models/skull.json',
+                // Function when resource is loaded
+                function ( object )
+                {
+                    scene.add( object );
+                }
+            );
+    
+            var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.1 );
+            scene.add( ambientLight );
+    
+    
+            // game logic
+            var update = function( )
+            {
+    
+            };
+    
+            // draw scene
+            var render = function( )
+            {
+                renderer.render( scene, camera );
+            };
+    
+            // run game loop (update, render, repeat)
+            var GameLoop = function( )
+            {
+                requestAnimationFrame( GameLoop );
+    
+                update( );
+                render( );
+            };
+    
+            GameLoop( );
 
-			var renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
-
-			var geometry = new THREE.BoxGeometry();
-			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			var cube = new THREE.Mesh( geometry, material );
-			scene.add( cube );
-
-			camera.position.z = 1.25;
-
-			var animate = function () {
-				requestAnimationFrame( animate );
-
-				cube.rotation.x += 0.0012;
-                cube.rotation.y += 0.0012;
-
-				renderer.render( scene, camera );
-			};
-
-			animate();
-         </script>
-    </canvasWrapper>
+            var clip = THREE.AnimationClip.findByName( clips, 'dance' );
+var action = mixer.clipAction( clip );
+action.play();
+        </script>
+    
+    
 
     </body>
     
